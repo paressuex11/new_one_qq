@@ -20,9 +20,10 @@ def client(port):
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     text = "The time is {}".format(datetime.now())
     data = text.encode("ascii")
-    print("The OS assigned me the address {}".format(sock.getsockname()))
+    sock.sendto(data, ("127.0.0.1", port))
+    print("The OS assigned me the address {}".format(sock.getsockname))
     data, address = sock.recvfrom(Max_bytes)
-    text = data.encode("ascii")
+    text = data.decode("ascii")
     print("The server {} replied {!r}".format(address, text))
 
 
